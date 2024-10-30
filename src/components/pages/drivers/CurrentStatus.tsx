@@ -6,7 +6,7 @@ import { useState } from "react"
 
 export const CurrentTripStatus = ({ tripID }: { tripID: string }) => {
   return (
-    <Card className="h-fit">
+    <Card>
       <CardHeader>
         <div className="flex flex-row items-center justify-between">
           <CardTitle className="uppercase">Current Trip</CardTitle>
@@ -95,7 +95,7 @@ const startingLocation = { lat: 40.713051, lng: -74.007233 }
 const destinationLocation = { lat: 40.78172919761992, lng: -73.9809106124907 }
 
 export const CurrentLocationStatus = () => {
-  const [currentLocation, setCurrentLocation] = useState(startingLocation)
+  const [currentLocation, _setCurrentLocation] = useState(startingLocation)
 
   return (
     <Card>

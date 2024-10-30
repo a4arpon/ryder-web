@@ -7,17 +7,28 @@ import {
   DriverInfo,
   DriverStatus,
 } from "#components/pages/drivers/Info"
+import { SkeletonList } from "#components/shared/SkeletonList"
+import { useDriver } from "#hooks/useDrivers"
 import { createFileRoute } from "@tanstack/react-router"
 
 const DriverPage = () => {
   const { driverID } = Route.useSearch() as { driverID: string }
+  const { driver, isLoading } = useDriver(driverID)
+
+  if (isLoading) {
+    return <SkeletonList listNumber={3} lineHeight="h-[200px]" />
+  }
+
   return (
     <>
       <div className="grid lg:grid-cols-5 gap-4">
-        <DriverInfo driverID={driverID} />
+        <DriverInfo driver={driver} />
         <div className="lg:col-span-2 flex flex-col gap-4">
-          <DriverStatus />
-          <AccountBalance />
+          <DriverStatus
+            status={driver?.status}
+            tripStatus={driver?.trip_status ?? "Unknown"}
+          />
+          <AccountBalance balance={driver?.balance} />
         </div>
       </div>
 
