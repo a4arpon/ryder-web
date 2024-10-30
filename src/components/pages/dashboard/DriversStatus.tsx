@@ -1,6 +1,6 @@
+import { Activity, Ban, Car, ClipboardCheck } from "lucide-react"
 import { Badge } from "#components/ui/badge"
 import { Card, CardContent, CardHeader } from "#components/ui/card"
-import { Activity, Ban, Car, ClipboardCheck } from "lucide-react"
 
 const StatusCard = ({
   title,
@@ -28,19 +28,21 @@ const StatusCard = ({
   )
 }
 
-
-
 export const TripsInsights = () => {
-
   return (
     <>
       <StatusCard title="Total Trips" icon={<Car />} counter="7434,34" />
-      <StatusCard title="In-process Trips" icon={<Activity />} counter="34,34" />
-      <StatusCard title="Completed Trips" icon={<ClipboardCheck />} counter="5655,00" />
+      <StatusCard
+        title="In-process Trips"
+        icon={<Activity />}
+        counter="34,34"
+      />
+      <StatusCard
+        title="Completed Trips"
+        icon={<ClipboardCheck />}
+        counter="5655,00"
+      />
       <StatusCard title="Canceled Trips" icon={<Ban />} counter="45,00" />
     </>
   )
 }
-
-
-

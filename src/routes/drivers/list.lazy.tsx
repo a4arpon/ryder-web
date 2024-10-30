@@ -1,8 +1,16 @@
-import { Button } from '#components/ui/button'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '#components/ui/table'
-import { useIntentTitle } from '#providers/IntentProvider'
-import { createLazyFileRoute, Link } from '@tanstack/react-router'
-import { Info, Trash } from 'lucide-react'
+import { Link, createLazyFileRoute } from "@tanstack/react-router"
+import { Info, Trash } from "lucide-react"
+import { Button } from "#components/ui/button"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "#components/ui/table"
+import { useIntentTitle } from "#providers/IntentProvider"
 
 const drivers = [
   {
@@ -36,9 +44,8 @@ const drivers = [
     phone: "1234567890",
     balance: 1000,
     status: "Active",
-  }
+  },
 ]
-
 
 const DriversListPage = () => {
   useIntentTitle("Drivers List")
@@ -65,8 +72,8 @@ const DriversListPage = () => {
             <TableCell>{driver.phone}</TableCell>
             <TableCell>${driver.balance}</TableCell>
             <TableCell>{driver.status}</TableCell>
-            <TableCell className='flex flex-row gap-2 items-center'>
-              <Link to='/drivers/driver'>
+            <TableCell className="flex flex-row gap-2 items-center">
+              <Link to="/drivers/driver">
                 <Button size="icon">
                   <Info />
                 </Button>
@@ -82,6 +89,6 @@ const DriversListPage = () => {
   )
 }
 
-export const Route = createLazyFileRoute('/drivers/list')({
+export const Route = createLazyFileRoute("/drivers/list")({
   component: () => <DriversListPage />,
 })

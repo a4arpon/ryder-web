@@ -4,9 +4,16 @@ import {
   useNavigate,
 } from "@tanstack/react-router"
 import {
-  Box, Car, ContactRound, FileX,
-  LayoutDashboard, List, MapPin, Table, UsersRound,
-  X
+  Box,
+  Car,
+  ContactRound,
+  FileX,
+  LayoutDashboard,
+  List,
+  MapPin,
+  Table,
+  UsersRound,
+  X,
 } from "lucide-react"
 import { useContext } from "react"
 import {
@@ -94,9 +101,7 @@ const SidebarItem = ({
   pathname: string
   index: number
 }) => {
-  const { sidebarToggle } = useContext(
-    IntentContext,
-  ) as IntentContextType
+  const { sidebarToggle } = useContext(IntentContext) as IntentContextType
 
   const sidebarToggler = () => {
     // If the screen size is mobile, toggle the sidebar
@@ -120,7 +125,7 @@ const SidebarItem = ({
             key={`${`${key}`}_69`}
             onClick={() => {
               navigator({
-                to: linkItem?.link
+                to: linkItem?.link,
               })
               sidebarToggler()
             }}
@@ -146,9 +151,7 @@ const Sidebar = () => {
       className={`lg:col-span-2 bg-secondary/80 dark:bg-secondary/40 h-full min-h-screen p-3 ${!isSidebarOpened && "hidden lg:inline"} duration-300 ease-in transition-all`}
     >
       <div className="flex flex-row justify-between items-center">
-        <h1 className="text-4xl font-semibold pt-3">
-          Ryder
-        </h1>
+        <h1 className="text-4xl font-semibold pt-3">Ryder</h1>
         <div className="flex flex-row gap-1 justify-between items-center">
           <ThemeChanger />
           <Button

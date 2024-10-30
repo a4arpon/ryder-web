@@ -1,6 +1,6 @@
+import { Activity, DollarSign, User } from "lucide-react"
 import { Badge } from "#components/ui/badge"
 import { Card, CardContent, CardHeader } from "#components/ui/card"
-import { Activity, DollarSign, User } from "lucide-react"
 
 export const EarningsInsights = () => {
   return (
@@ -57,6 +57,6 @@ export const EarningsInsights = () => {
           <p className="text-3xl font-semibold">734</p>
         </CardContent>
       </Card>
-    </ >
+    </>
   )
 }

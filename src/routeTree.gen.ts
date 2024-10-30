@@ -20,6 +20,7 @@ import { Route as DriversDriverImport } from './routes/drivers/driver'
 const IndexLazyImport = createFileRoute('/')()
 const TripsIndexLazyImport = createFileRoute('/trips/')()
 const EarningsIndexLazyImport = createFileRoute('/earnings/')()
+const TripsTripLazyImport = createFileRoute('/trips/$trip')()
 const StaticsEarningsLazyImport = createFileRoute('/statics/earnings')()
 const MiscSettingsLazyImport = createFileRoute('/misc/settings')()
 const MiscProfileLazyImport = createFileRoute('/misc/profile')()
@@ -47,6 +48,12 @@ const EarningsIndexLazyRoute = EarningsIndexLazyImport.update({
 } as any).lazy(() =>
   import('./routes/earnings/index.lazy').then((d) => d.Route),
 )
+
+const TripsTripLazyRoute = TripsTripLazyImport.update({
+  id: '/trips/$trip',
+  path: '/trips/$trip',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/trips/$trip.lazy').then((d) => d.Route))
 
 const StaticsEarningsLazyRoute = StaticsEarningsLazyImport.update({
   id: '/statics/earnings',
@@ -141,6 +148,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StaticsEarningsLazyImport
       parentRoute: typeof rootRoute
     }
+    '/trips/$trip': {
+      id: '/trips/$trip'
+      path: '/trips/$trip'
+      fullPath: '/trips/$trip'
+      preLoaderRoute: typeof TripsTripLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/earnings/': {
       id: '/earnings/'
       path: '/earnings'
@@ -168,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/misc/profile': typeof MiscProfileLazyRoute
   '/misc/settings': typeof MiscSettingsLazyRoute
   '/statics/earnings': typeof StaticsEarningsLazyRoute
+  '/trips/$trip': typeof TripsTripLazyRoute
   '/earnings': typeof EarningsIndexLazyRoute
   '/trips': typeof TripsIndexLazyRoute
 }
@@ -180,6 +195,7 @@ export interface FileRoutesByTo {
   '/misc/profile': typeof MiscProfileLazyRoute
   '/misc/settings': typeof MiscSettingsLazyRoute
   '/statics/earnings': typeof StaticsEarningsLazyRoute
+  '/trips/$trip': typeof TripsTripLazyRoute
   '/earnings': typeof EarningsIndexLazyRoute
   '/trips': typeof TripsIndexLazyRoute
 }
@@ -193,6 +209,7 @@ export interface FileRoutesById {
   '/misc/profile': typeof MiscProfileLazyRoute
   '/misc/settings': typeof MiscSettingsLazyRoute
   '/statics/earnings': typeof StaticsEarningsLazyRoute
+  '/trips/$trip': typeof TripsTripLazyRoute
   '/earnings/': typeof EarningsIndexLazyRoute
   '/trips/': typeof TripsIndexLazyRoute
 }
@@ -207,6 +224,7 @@ export interface FileRouteTypes {
     | '/misc/profile'
     | '/misc/settings'
     | '/statics/earnings'
+    | '/trips/$trip'
     | '/earnings'
     | '/trips'
   fileRoutesByTo: FileRoutesByTo
@@ -218,6 +236,7 @@ export interface FileRouteTypes {
     | '/misc/profile'
     | '/misc/settings'
     | '/statics/earnings'
+    | '/trips/$trip'
     | '/earnings'
     | '/trips'
   id:
@@ -229,6 +248,7 @@ export interface FileRouteTypes {
     | '/misc/profile'
     | '/misc/settings'
     | '/statics/earnings'
+    | '/trips/$trip'
     | '/earnings/'
     | '/trips/'
   fileRoutesById: FileRoutesById
@@ -242,6 +262,7 @@ export interface RootRouteChildren {
   MiscProfileLazyRoute: typeof MiscProfileLazyRoute
   MiscSettingsLazyRoute: typeof MiscSettingsLazyRoute
   StaticsEarningsLazyRoute: typeof StaticsEarningsLazyRoute
+  TripsTripLazyRoute: typeof TripsTripLazyRoute
   EarningsIndexLazyRoute: typeof EarningsIndexLazyRoute
   TripsIndexLazyRoute: typeof TripsIndexLazyRoute
 }
@@ -254,6 +275,7 @@ const rootRouteChildren: RootRouteChildren = {
   MiscProfileLazyRoute: MiscProfileLazyRoute,
   MiscSettingsLazyRoute: MiscSettingsLazyRoute,
   StaticsEarningsLazyRoute: StaticsEarningsLazyRoute,
+  TripsTripLazyRoute: TripsTripLazyRoute,
   EarningsIndexLazyRoute: EarningsIndexLazyRoute,
   TripsIndexLazyRoute: TripsIndexLazyRoute,
 }
@@ -277,6 +299,7 @@ export const routeTree = rootRoute
         "/misc/profile",
         "/misc/settings",
         "/statics/earnings",
+        "/trips/$trip",
         "/earnings/",
         "/trips/"
       ]
@@ -301,6 +324,9 @@ export const routeTree = rootRoute
     },
     "/statics/earnings": {
       "filePath": "statics/earnings.lazy.tsx"
+    },
+    "/trips/$trip": {
+      "filePath": "trips/$trip.lazy.tsx"
     },
     "/earnings/": {
       "filePath": "earnings/index.lazy.tsx"

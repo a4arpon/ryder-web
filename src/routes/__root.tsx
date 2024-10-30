@@ -30,7 +30,7 @@ const AppRenderer = () => {
       navigator({ to: "/" })
     }
 
-    return () => { }
+    return () => {}
   }, [isAuth])
 
   if (isAuth) {
@@ -54,8 +54,6 @@ const AppRenderer = () => {
 
   return <Login setIsAuth={setIsAuth} />
 }
-
-
 
 const RootLayout = () => {
   return (

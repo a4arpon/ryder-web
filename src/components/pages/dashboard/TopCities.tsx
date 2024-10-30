@@ -1,11 +1,19 @@
-import { Badge } from "#components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "#components/ui/card"
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "#components/ui/chart"
-import { ArrowUpNarrowWide, } from "lucide-react"
+import { ArrowUpNarrowWide } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts"
-
-
-
+import { Badge } from "#components/ui/badge"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "#components/ui/card"
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "#components/ui/chart"
 
 export const description = "A bar chart"
 
@@ -25,12 +33,7 @@ const chartConfig = {
     label: "Desktop",
     color: "hsl(var(--chart-1))",
   },
-
-
 } satisfies ChartConfig
-
-
-
 
 const TopCities = () => {
   return (
@@ -59,7 +62,7 @@ const TopCities = () => {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="trips" fill="var(--color-desktop)" radius={8} >
+            <Bar dataKey="trips" fill="var(--color-desktop)" radius={8}>
               <LabelList dataKey="trips" position="top" offset={5} />
             </Bar>
           </BarChart>

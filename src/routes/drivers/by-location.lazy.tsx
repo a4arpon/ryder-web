@@ -1,9 +1,15 @@
-import { MapLocationComponent } from '#components/pages/drivers/MapLocationComponent'
-import { Badge } from '#components/ui/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '#components/ui/card'
-import { useIntentTitle } from '#providers/IntentProvider'
-import { createLazyFileRoute } from '@tanstack/react-router'
-import { MapPinned } from 'lucide-react'
+import { createLazyFileRoute } from "@tanstack/react-router"
+import { MapPinned } from "lucide-react"
+import { MapLocationComponent } from "#components/pages/drivers/MapLocationComponent"
+import { Badge } from "#components/ui/badge"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "#components/ui/card"
+import { useIntentTitle } from "#providers/IntentProvider"
 
 const DriversByLocationPage = () => {
   useIntentTitle("Tips")
@@ -31,6 +37,6 @@ const DriversByLocationPage = () => {
   )
 }
 
-export const Route = createLazyFileRoute('/drivers/by-location')({
+export const Route = createLazyFileRoute("/drivers/by-location")({
   component: () => <DriversByLocationPage />,
 })

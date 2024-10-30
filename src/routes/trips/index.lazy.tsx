@@ -1,8 +1,15 @@
-import { Button } from '#components/ui/button'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '#components/ui/table'
-import { createLazyFileRoute, Link } from '@tanstack/react-router'
-import { Info, Trash } from 'lucide-react'
-
+import { Link, createLazyFileRoute } from "@tanstack/react-router"
+import { Info, Trash } from "lucide-react"
+import { Button } from "#components/ui/button"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "#components/ui/table"
 
 const invoices = [
   {
@@ -47,8 +54,6 @@ const invoices = [
   },
 ]
 
-
-
 export const TripsPage = () => {
   return (
     <Table>
@@ -73,7 +78,7 @@ export const TripsPage = () => {
             <TableCell>{invoice.startedOn.toLocaleTimeString()}</TableCell>
             <TableCell>{invoice.endedOn.toLocaleTimeString()}</TableCell>
             <TableCell>${invoice.tripCost}</TableCell>
-            <TableCell className='flex flex-row gap-2 items-center'>
+            <TableCell className="flex flex-row gap-2 items-center">
               <Link to={`/trips/${invoice.id}`}>
                 <Button size="icon">
                   <Info />
@@ -90,7 +95,6 @@ export const TripsPage = () => {
   )
 }
 
-
-export const Route = createLazyFileRoute('/trips/')({
+export const Route = createLazyFileRoute("/trips/")({
   component: () => <TripsPage />,
 })
