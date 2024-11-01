@@ -10,51 +10,16 @@ import {
   TableHeader,
   TableRow,
 } from "#components/ui/table"
-
-const invoices = [
-  {
-    id: "INV001",
-    driverName: "John Doe",
-    status: "On Going",
-    startedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2),
-    endedOn: new Date(),
-    tripCost: 2500,
-    startsFrom: "New York",
-    endsAt: "Los Angeles",
-  },
-  {
-    id: "INV002",
-    driverName: "Bob Smith",
-    status: "On Going",
-    startedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 3),
-    endedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 2),
-    tripCost: 2500,
-    startsFrom: "San Francisco",
-    endsAt: "Los Angeles",
-  },
-  {
-    id: "INV003",
-    driverName: "Jane Marly",
-    status: "On Going",
-    startedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 4),
-    endedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 3),
-    tripCost: 2500,
-    startsFrom: "Queens",
-    endsAt: "Manhattan",
-  },
-  {
-    id: "INV004",
-    driverName: "Rabi Ahmed",
-    status: "On Going",
-    startedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 5),
-    endedOn: new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 4),
-    tripCost: 2500,
-    startsFrom: "Los Angeles",
-    endsAt: "Miami",
-  },
-]
+import { useTrips } from "#hooks/useTrips"
+import { SkeletonList } from "#components/shared/SkeletonList"
 
 export const TripsPage = () => {
+  const { trips, isLoading } = useTrips()
+
+  if (isLoading) {
+    return <SkeletonList listNumber={10} />
+  }
+
   return (
     <Table>
       <TableCaption>Drivers List</TableCaption>
@@ -64,22 +29,24 @@ export const TripsPage = () => {
           <TableHead>Driver Name</TableHead>
           <TableHead>Trip Status</TableHead>
           <TableHead>Trip Started On</TableHead>
-          <TableHead>Trip Ended On</TableHead>
+          <TableHead>Trip Destination</TableHead>
           <TableHead>Trip Cost</TableHead>
           <TableHead>Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.id}>
-            <TableCell className="font-medium">{invoice.id}</TableCell>
-            <TableCell>{invoice.driverName}</TableCell>
-            <TableCell>{invoice.status}</TableCell>
-            <TableCell>{invoice.startedOn.toLocaleTimeString()}</TableCell>
-            <TableCell>{invoice.endedOn.toLocaleTimeString()}</TableCell>
-            <TableCell>${invoice.tripCost}</TableCell>
+        {trips.map((trip) => (
+          <TableRow key={trip?.tripID}>
+            <TableCell className="font-medium">{trip?.tripID}</TableCell>
+            <TableCell>{trip?.driver_name}</TableCell>
+            <TableCell>{trip?.tripStatus.toUpperCase()}</TableCell>
+            <TableCell>
+              {new Date(trip?.createdAt).toLocaleTimeString()}
+            </TableCell>
+            <TableCell>{trip?.destination}</TableCell>
+            <TableCell>${trip?.tripFee.toFixed(2)}</TableCell>
             <TableCell className="flex flex-row gap-2 items-center">
-              <Link to={`/trips/${invoice.id}`}>
+              <Link to={`/trips/${trip?.tripID}`}>
                 <Button size="icon">
                   <Info />
                 </Button>

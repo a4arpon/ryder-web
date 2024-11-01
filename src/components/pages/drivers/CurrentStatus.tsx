@@ -108,11 +108,7 @@ export const CurrentLocationStatus = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <MapStatusComponent
-          startingLocation={startingLocation}
-          currentLocation={currentLocation}
-          destinationLocation={destinationLocation}
-        />
+        <MapStatusComponent currentLocation={currentLocation} />
       </CardContent>
     </Card>
   )

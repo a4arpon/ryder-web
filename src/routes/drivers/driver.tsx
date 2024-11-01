@@ -16,7 +16,7 @@ const DriverPage = () => {
   const { driver, isLoading } = useDriver(driverID)
 
   if (isLoading) {
-    return <SkeletonList listNumber={3} lineHeight="h-[200px]" />
+    return <SkeletonList listNumber={2} lineHeight="h-[300px]" />
   }
 
   return (

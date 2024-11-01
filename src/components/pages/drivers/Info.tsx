@@ -9,7 +9,7 @@ export const DriverInfo = ({ driver }: { driver: Driver }) => {
       <CardHeader>
         <div className="flex flex-row items-center justify-between">
           <CardTitle className="uppercase">Driver Profile</CardTitle>
-          <Badge className="rounded-full py-1 px-1" variant="outline">
+          <Badge className="rounded-full py-1 px-1" variant="secondary">
             <User />
           </Badge>
         </div>
@@ -67,7 +67,7 @@ export const AccountBalance = ({ balance }: { balance: number }) => {
         </div>
       </CardHeader>
       <CardContent>
-        <p className="ont-medium">${balance.toFixed(2)}</p>
+        <p className="ont-medium">${balance?.toFixed(2) ?? "Unknown"}</p>
       </CardContent>
     </Card>
   )
@@ -91,8 +91,12 @@ export const DriverStatus = ({
         </div>
       </CardHeader>
       <CardContent>
-        <p className="font-medium uppercase">Driver Status: {status}</p>
-        <p className="font-medium uppercase">Trip Status: {tripStatus}</p>
+        <p className="font-medium uppercase">
+          Driver Status: {status ?? "Unknown"}
+        </p>
+        <p className="font-medium uppercase">
+          Trip Status: {tripStatus ?? "Unknown"}
+        </p>
       </CardContent>
     </Card>
   )
