@@ -92,7 +92,6 @@ export const CurrentTripStatus = ({ tripID }: { tripID: string }) => {
 }
 
 const startingLocation = { lat: 40.713051, lng: -74.007233 }
-const destinationLocation = { lat: 40.78172919761992, lng: -73.9809106124907 }
 
 export const CurrentLocationStatus = () => {
   const [currentLocation, _setCurrentLocation] = useState(startingLocation)
