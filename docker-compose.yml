@@ -1,0 +1,15 @@
+services:
+  frontend:
+    build:
+      context: .  # Build from the current directory
+      dockerfile: Dockerfile  # Specify the Dockerfile if it's named differently
+    environment:
+      - VITE_GOOGLE_API_KEY=AIzaSyCpVW4pd1ODof-QddwmH7VVGighYKMNwQk
+      - VITE_API_URL=http://127.0.0.1:8000/api
+    volumes:
+      - .:/app  # Mount current directory to /app in the container
+      - /app/node_modules  # Exclude node_modules from mounting
+    ports:
+      - "4000:4173"  # Map the exposed port 4173 to localhost:4000
+    command: ["npm", "start"]  # Start the application
+
